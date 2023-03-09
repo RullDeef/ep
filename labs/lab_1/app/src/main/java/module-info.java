@@ -5,4 +5,5 @@ module explan {
 
     opens explan to javafx.fxml;
     exports explan;
+    exports explan.model;
 }

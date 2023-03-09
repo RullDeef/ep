@@ -21,7 +21,8 @@ public class SimulationService {
 
         return new ModelingResult(
                 params.lambda / params.mu,
-                modelingResult.statRho());
+                modelingResult.statRho(),
+                modelingResult.avgWaitTime());
     }
 
     public List<Point> avgWaitTimeOverRho(BuildChartParams params) {
@@ -31,8 +32,8 @@ public class SimulationService {
             float x = params.minX + i * params.deltaX();
 
             float rho = x; // rho = lambda / mu
-            float lambda = rho;
-            float mu = 1.0f;
+            float mu = 1.5f;
+            float lambda = rho * mu;
 
             float avgWaitTime = 0.0f;
 
@@ -43,7 +44,7 @@ public class SimulationService {
                 modeler.setSourceGenerator(Generator.exp(lambda));
                 modeler.setWorkerGenerator(Generator.exp(mu));
     
-                var modelingResult = modeler.simulate();
+                var modelingResult = modeler.simulateRequests(200);
                 avgWaitTime += modelingResult.avgWaitTime();
             }
 

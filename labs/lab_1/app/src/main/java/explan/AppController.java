@@ -3,9 +3,7 @@ package explan;
 import java.io.IOException;
 
 import explan.model.SimulationParams;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.chart.Chart;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Alert;
@@ -30,6 +28,9 @@ public class AppController {
 
     @FXML
     TextField rhoPractical;
+
+    @FXML
+    TextField avgWaitTime;
 
     @FXML
     LineChart<Number, Number> avgWaitTimeChart;
@@ -83,6 +84,7 @@ public class AppController {
 
                 rhoTheoretical.setText(String.format("%.3f", result.rhoTheoretical));
                 rhoPractical.setText(String.format("%.3f", result.rhoPractical));
+                avgWaitTime.setText(String.format("%.3f", result.avgWaitTime));
             } catch (Exception e) {
                 displayErrorMessage("Ошибка при моделировании", e.getMessage());
 
@@ -96,7 +98,8 @@ public class AppController {
     public void aboutMenuAction() {
         var errorAlert = new Alert(Alert.AlertType.INFORMATION);
         errorAlert.setHeaderText("О программе");
-        errorAlert.setContentText("Лабораторная работа №1\nпо курсу \"Планирование Эксперимента\".\nВариант 1.\nСтудент: Клименко Алексей, ИУ7-85Б.");
+        errorAlert.setContentText(
+                "Лабораторная работа №1\nпо курсу \"Планирование Эксперимента\".\nВариант 1.\nСтудент: Клименко Алексей, ИУ7-85Б.");
         errorAlert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
         errorAlert.showAndWait();
     }
@@ -104,10 +107,10 @@ public class AppController {
     private void updateAvgWaitTimeChart() {
         var params = new BuildChartParams();
         params.minX = 0.05f;
-        params.maxX = 0.95f;
-        params.pointsCount = 21;
-        params.modelingTime = 300.0f;
-        params.modelingsCount = 100;
+        params.maxX = 1.7f;
+        params.pointsCount = 31;
+        params.modelingTime = 2000.0f;
+        params.modelingsCount = 150;
 
         var points = simulationService.avgWaitTimeOverRho(params);
 

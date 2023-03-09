@@ -25,6 +25,7 @@ public class SimulationResult {
     }
 
     public float statRho() {
+        // return avgWaitTime() / totalTime;
         return statLambda() / statMu();
     }
 
@@ -34,13 +35,13 @@ public class SimulationResult {
         for (var request : requestsProcessed)
             avgTime += request.waitingTime();
 
-        if (requestProcessing != null)
-            avgTime += requestProcessing.waitingTime();
+        // if (requestProcessing != null)
+        //     avgTime += requestProcessing.waitingTime();
 
-        for (var request : requestsQueued)
-            avgTime += totalTime - request.arrivalTime;
+        // for (var request : requestsQueued)
+        //     avgTime += totalTime - request.arrivalTime;
 
-        return avgTime / totalRequestsCome();
+        return avgTime / totalRequestsHandled();
     }
 
     private float statLambda() {
