@@ -9,6 +9,11 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 
 public class Lab2View extends BaseView {
+    @FXML TextField minLambda;
+    @FXML TextField maxLambda;
+    @FXML TextField minMu;
+    @FXML TextField maxMu;
+
     @FXML TextField yOutputText;
     @FXML TextField yLHatOutputText;
     @FXML TextField yNLHatOutputText;
@@ -46,6 +51,34 @@ public class Lab2View extends BaseView {
     @FXML Label regressionDenormNL;
 
     final static String defaultYFormat = "%.3f";
+
+    public double getMinLambda() throws Exception {
+        return getTextFieldValue("min λ", minLambda);
+    }
+
+    public double getMaxLambda() throws Exception {
+        return getTextFieldValue("max λ", maxLambda);
+    }
+
+    public double getMinMu() throws Exception {
+        return getTextFieldValue("min μ", minMu);
+    }
+
+    public double getMaxMu() throws Exception {
+        return getTextFieldValue("max μ", maxMu);
+    }
+
+    private double getTextFieldValue(String name, TextField field) throws Exception {
+        try {
+            double value = Double.parseDouble(field.getText());
+            if (value <= 0) {
+                throw new Exception(String.format("Значение %s должно быть положительным", name));
+            }
+            return value;
+        } catch (NumberFormatException e) {
+            throw new Exception(String.format("Некорректный формат ввода (%s)", name));
+        }
+    }
 
     public void setYOutput(double y) {
         yOutputText.setText(String.format(defaultYFormat, y));

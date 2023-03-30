@@ -1,19 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<!-- <?import javafx.scene.chart.LineChart?> -->
-<!-- <?import javafx.scene.chart.NumberAxis?> -->
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
-<!-- <?import javafx.scene.control.Menu?> -->
-<!-- <?import javafx.scene.control.MenuBar?> -->
-<!-- <?import javafx.scene.control.MenuItem?> -->
 <?import javafx.scene.control.Separator?>
-<!-- <?import javafx.scene.control.Tab?> -->
-<!-- <?import javafx.scene.control.TabPane?> -->
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -22,7 +14,15 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<HBox prefHeight="100.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="explan.Lab2Controller">
+<!-- <?import javafx.scene.chart.LineChart?> -->
+<!-- <?import javafx.scene.chart.NumberAxis?> -->
+<!-- <?import javafx.scene.control.Menu?> -->
+<!-- <?import javafx.scene.control.MenuBar?> -->
+<!-- <?import javafx.scene.control.MenuItem?> -->
+<!-- <?import javafx.scene.control.Tab?> -->
+<!-- <?import javafx.scene.control.TabPane?> -->
+
+<HBox prefHeight="601.0" prefWidth="1317.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="explan.Lab2Controller">
     <children>
         <VBox prefHeight="200.0">
             <children>
@@ -145,6 +145,79 @@
         </VBox>
         <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
             <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="Область экспериментирования" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="8.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets top="8.0" />
+               </padding>
+            </Label>
+            <GridPane alignment="CENTER" hgap="8.0" maxWidth="1.7976931348623157E308" vgap="8.0">
+              <columnConstraints>
+                <ColumnConstraints halignment="RIGHT" hgrow="NEVER" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints halignment="RIGHT" hgrow="NEVER" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label contentDisplay="CENTER" text="min λ">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label contentDisplay="CENTER" text="max λ" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label contentDisplay="CENTER" text="min μ" GridPane.columnIndex="2">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label contentDisplay="CENTER" text="max μ" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="minLambda" promptText="0.8" text="0.8" GridPane.columnIndex="1">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="maxLambda" promptText="1.2" text="1.2" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="minMu" promptText="2" text="2" GridPane.columnIndex="3">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="maxMu" promptText="4" text="4" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </TextField>
+               </children>
+               <padding>
+                  <Insets bottom="8.0" />
+               </padding>
+            </GridPane>
+            <Separator prefWidth="200.0">
+               <VBox.margin>
+                  <Insets bottom="8.0" />
+               </VBox.margin>
+            </Separator>
             <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="Матрица планирования" textAlignment="CENTER">
                 <font>
                     <Font name="System Bold" size="20.0" />

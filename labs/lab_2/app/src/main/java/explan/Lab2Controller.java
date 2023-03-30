@@ -24,6 +24,11 @@ public class Lab2Controller extends Lab2View {
     @FXML
     private void recalcYButtonPressed() {
         try {
+            experimentService.setExperimentSpace(
+                getMinLambda(), getMaxLambda(),
+                getMinMu(), getMaxMu()
+            );
+
             experimentService.recalcCoefficients();
             var plan = experimentService.getPlanMatrix();
 
@@ -39,6 +44,7 @@ public class Lab2Controller extends Lab2View {
             setNonLinearRegressionDenorm(experimentService.getB_NonLinearDenorm());
         } catch (Exception e) {
             e.printStackTrace();
+            displayErrorMessage("Ошибка", e.getMessage());
         }
     }
 

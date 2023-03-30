@@ -32,4 +32,8 @@ public class FactorTransformer {
     public double I0() {
         return (minValue + maxValue) / 2;
     }
+
+    public boolean isInverted() {
+        return minValue > maxValue;
+    }
 }

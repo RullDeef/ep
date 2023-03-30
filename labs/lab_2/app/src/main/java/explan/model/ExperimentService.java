@@ -24,14 +24,24 @@ public class ExperimentService {
         return experimentor;
     }
 
-    public void setLambdaTransform(double min, double max) {
-        experimentor.setLambdaTransformer(
-                new FactorTransformer(min, max));
-    }
+    public void setExperimentSpace(double minLambda, double maxLambda, double minMu, double maxMu) throws Exception {
+        var lambda = new FactorTransformer(minLambda, maxLambda);
+        var mu = new FactorTransformer(minMu, maxMu);
 
-    public void setMuTransform(double min, double max) {
-        experimentor.setMuTransformer(
-                new FactorTransformer(min, max));
+        if (lambda.isInverted()) {
+            throw new Exception("Некорректный интервал варьирования λ");
+        } else if (lambda.I() < 0.01) {
+            throw new Exception("Интервал варьирования λ слишком мал");
+        }
+
+        if (mu.isInverted()) {
+            throw new Exception("Некорректный интервал варьирования μ");
+        } else if (mu.I() < 0.01) {
+            throw new Exception("Интервал варьирования μ слишком мал");
+        }
+
+        experimentor.setLambdaTransformer(lambda);
+        experimentor.setMuTransformer(mu);
     }
 
     public void recalcCoefficients() {
