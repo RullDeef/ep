@@ -17,7 +17,12 @@ public class Generator {
     }
 
     public float genNext() {
-        return func.apply(random.nextFloat());
+        var result = func.apply(random.nextFloat());
+        if (Double.isNaN(result) || Double.isInfinite(result)) {
+            // assert false;
+            return 1.0e10f;
+        }
+        return result;
     }
 
     /**

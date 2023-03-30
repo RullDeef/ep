@@ -137,6 +137,12 @@ public class SystemModel {
                 }
             }
 
+            // check for time corruption
+            if (Double.isNaN(time) || Double.isNaN(nextRequestArrivalTime) || Double.isNaN(workCompleteTime)) {
+                // time is corrupted!
+                assert false;
+            }
+
             // advance time
             float deltaTime = Float.POSITIVE_INFINITY;
             if (requestsProduced < totalRequests) {
