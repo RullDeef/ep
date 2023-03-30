@@ -32,8 +32,11 @@ public class Lab2Controller extends Lab2View {
             setYNL(plan.getY_NonLinear());
             setYDL(plan.getY_LinearError());
             setYDNL(plan.getY_NonLinearError());
-
-            updateRegressionTexts();
+            
+            setLinearRegressionNorm(plan.getB_Linear());
+            setLinearRegressionDenorm(experimentService.getB_LinearDenorm());
+            setNonLinearRegressionNorm(plan.getB_NonLinear());
+            setNonLinearRegressionDenorm(experimentService.getB_NonLinearDenorm());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -57,6 +60,10 @@ public class Lab2Controller extends Lab2View {
             return;
         }
 
+        var plan = experimentService.getPlanMatrix();
+        double yLHat = plan.calcY_Linear(x1, x2);
+        double yNLHat = plan.calcY_NonLinear(x1, x2);
+
         if (normalizedInputCheckBox.isSelected()) {
             x1 = experimentService.getExperimentor().denormalizeLambda(x1);
             x2 = experimentService.getExperimentor().denormalizeMu(x2);
@@ -64,25 +71,9 @@ public class Lab2Controller extends Lab2View {
 
         double y = experimentService.realAt(x1, x2);
 
-        var plan = experimentService.getPlanMatrix();
-        double yLHat = plan.calcY_Linear(x1, x2);
-        double yNLHat = plan.calcY_NonLinear(x1, x2);
-
         setYOutput(y);
         setYLHatOutput(yLHat);
         setYNLHatOutput(yNLHat);
-    }
-
-    private void updateRegressionTexts() {
-        try {
-            var plan = experimentService.getPlanMatrix();
-
-            setLinearRegressionNorm(plan.getB_Linear());
-            setNonLinearRegressionNorm(plan.getB_NonLinear());
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     @FXML

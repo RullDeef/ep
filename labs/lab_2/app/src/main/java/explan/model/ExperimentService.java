@@ -48,12 +48,43 @@ public class ExperimentService {
         }
     }
 
-    public double bDenormAt(int row) throws Exception {
-        // var lambda = experimentor.getLambdaTransform();
-        // var mu = experimentor.getMuTransformer();
+    public SimpleMatrix getB_LinearDenorm() {
+        var B = planMatrix.getB_Linear();
+        var Bnew = B.copy();
 
-        // return planner.bDenormAt(row, lambda, mu);
-        throw new Exception();
+        double dx1 = experimentor.getLambdaTransform().I() / 2;
+        double dx2 = experimentor.getMuTransformer().I() / 2;
+        double x10 = experimentor.getLambdaTransform().I0();
+        double x20 = experimentor.getMuTransformer().I0();
+
+        // transform coeffs
+        Bnew.set(1, B.get(1) / dx1);
+        Bnew.set(2, B.get(2) / dx2);
+
+        Bnew.set(0, B.get(0) - B.get(1) * x10 / dx1 - B.get(2) * x20 / dx2);
+
+        return Bnew;
+    }
+
+    public SimpleMatrix getB_NonLinearDenorm() {
+        var B = planMatrix.getB_NonLinear();
+        var Bnew = B.copy();
+
+        double dx1 = experimentor.getLambdaTransform().I() / 2;
+        double dx2 = experimentor.getMuTransformer().I() / 2;
+        double x10 = experimentor.getLambdaTransform().I0();
+        double x20 = experimentor.getMuTransformer().I0();
+
+        // transform coeffs
+        Bnew.set(1, B.get(1) / dx1 - B.get(3) * x20 / (dx1 * dx2));
+        Bnew.set(2, B.get(2) / dx2 - B.get(3) * x10 / (dx1 * dx2));
+
+        Bnew.set(0, B.get(0)
+            - B.get(1) * x10 / dx1
+            - B.get(2) * x20 / dx2
+            + B.get(3) * x10 * x20 / (dx1 * dx2));
+
+        return Bnew;
     }
 
     public double realAt(double lambda, double mu) {
@@ -61,30 +92,6 @@ public class ExperimentService {
         double x2 = experimentor.normalizeMu(mu);
 
         return experimentor.y(x1, x2);
-    }
-
-    public double diffAt(double lambda, double mu) throws Exception {
-        throw new Exception();
-        // double pred = predictNormalized(lambda, mu);
-        // double act = 0;
-
-        // try {
-        //     if (lambda == -1 && mu == -1) {
-        //         act = planner.yAt(0);
-        //     } else if (lambda == 1 && mu == -1) {
-        //         act = planner.yAt(1);
-        //     } else if (lambda == -1 && mu == 1) {
-        //         act = planner.yAt(2);
-        //     } else if (lambda == 1 && mu == 1) {
-        //         act = planner.yAt(3);
-        //     } else {
-        //         throw new Exception();
-        //     }
-        // } catch (Exception e) {
-        //     e.printStackTrace();
-        // }
-        
-        // return Math.abs(pred - act);
     }
 
     public double predictNormalized(double lambda, double mu) throws Exception {

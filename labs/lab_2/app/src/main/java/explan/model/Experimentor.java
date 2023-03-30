@@ -7,6 +7,7 @@ package explan.model;
 public class Experimentor {
     private SimulationService simulationService;
     private double tMax = 1000.0; // Double.NaN;
+    private double totalIterations = 100;
 
     private FactorTransformer lambdaTransformer;
     private FactorTransformer muTransformer;
@@ -42,17 +43,17 @@ public class Experimentor {
 
     public double y(double x1, double x2) {
         var params = new SimulationParams(
-                (float) denormalizeLambda(x1),
-                (float) denormalizeMu(x2),
-                (float) tMax);
+            (float) denormalizeLambda(x1),
+            (float) denormalizeMu(x2),
+            (float) tMax
+        );
         
         double result = 0.0;
-        final int iterations = 10;
-        for (int i = 0; i < iterations; i++) {
+        for (int i = 0; i < totalIterations; i++) {
             var simulationResult = simulationService.startSimulationN(params, 1000);
             result += simulationResult.avgWaitTime;
         }
-        return result / iterations;
+        return result / totalIterations;
     }
 
     public double normalizeLambda(double factor) {

@@ -2,17 +2,17 @@ package explan.model.experiment;
 
 public class Request {
     public final int id;
-    public final float arrivalTime;
+    public final double arrivalTime;
 
-    public float leaveQueueTime = 0.0f;
-    public float leaveSystemTime = 0.0f;
+    public double leaveQueueTime = 0.0f;
+    public double leaveSystemTime = 0.0f;
 
-    public Request(int id, float arrivalTime) {
+    public Request(int id, double arrivalTime) {
         this.id = id;
         this.arrivalTime = arrivalTime;
     }
 
-    public float waitingTime() {
+    public double waitingTime() {
         return leaveQueueTime - arrivalTime;
     }
 }

@@ -28,4 +28,8 @@ public class FactorTransformer {
     public double I() {
         return maxValue - minValue;
     }
+
+    public double I0() {
+        return (minValue + maxValue) / 2;
+    }
 }

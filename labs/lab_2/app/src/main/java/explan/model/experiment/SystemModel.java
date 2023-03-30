@@ -25,15 +25,15 @@ public class SystemModel {
         var requestsQueued = new ArrayDeque<Request>();
         var requestsProcessed = new ArrayList<Request>();
 
-        float time = 0.0f;
+        double time = 0.0f;
         int requestId = 1;
 
-        float nextRequestArrivalTime = 0.0f;
-        float workCompleteTime = 0.0f;
+        double nextRequestArrivalTime = 0.0f;
+        double workCompleteTime = 0.0f;
         boolean workerBusy = false;
 
         Request processingRequest = null;
-        float workerIdle = 0.0f;
+        double workerIdle = 0.0f;
 
         while (time < simTime) {
             // check request arrival
@@ -66,7 +66,7 @@ public class SystemModel {
             }
 
             // advance time
-            float deltaTime = nextRequestArrivalTime;
+            var deltaTime = nextRequestArrivalTime;
             if (workerBusy) {
                 deltaTime = Math.min(deltaTime, workCompleteTime);
             }
@@ -92,11 +92,11 @@ public class SystemModel {
         var requestsQueued = new ArrayDeque<Request>();
         var requestsProcessed = new ArrayList<Request>();
 
-        float time = 0.0f;
+        double time = 0.0;
         int requestId = 1;
 
-        float nextRequestArrivalTime = 0.0f;
-        float workCompleteTime = 0.0f;
+        double nextRequestArrivalTime = 0.0;
+        double workCompleteTime = 0.0;
         boolean workerBusy = false;
 
         Request processingRequest = null;
@@ -144,7 +144,7 @@ public class SystemModel {
             }
 
             // advance time
-            float deltaTime = Float.POSITIVE_INFINITY;
+            var deltaTime = Double.POSITIVE_INFINITY;
             if (requestsProduced < totalRequests) {
                 deltaTime = nextRequestArrivalTime;
             }

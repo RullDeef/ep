@@ -121,7 +121,15 @@ public class Lab2View extends BaseView {
     public void setLinearRegressionDenorm(SimpleMatrix B) {
         assert B.getNumRows() == 3 && B.getNumCols() == 1;
 
-        regressionNormNL.setText("TODO");
+        var text = new StringBuilder()
+            .append("y = ")
+            .append(String.format("%.3f ", B.get(0)))
+            .append(buildNumOpString(B.get(1), "λ"))
+            .append(' ')
+            .append(buildNumOpString(B.get(2), "μ"))
+            .toString();
+        
+        regressionDenormL.setText(text);
     }
 
     public void setNonLinearRegressionNorm(SimpleMatrix B) {
@@ -137,13 +145,23 @@ public class Lab2View extends BaseView {
             .append(buildNumOpString(B.get(3), "x1*x2"))
             .toString();
         
-        regressionDenormL.setText(text);
+        regressionNormNL.setText(text);
     }
 
     public void setNonLinearRegressionDenorm(SimpleMatrix B) {
         assert B.getNumRows() == 4 && B.getNumCols() == 1;
 
-        regressionDenormNL.setText("TODO");
+        var text = new StringBuilder()
+            .append("y = ")
+            .append(String.format("%.3f ", B.get(0)))
+            .append(buildNumOpString(B.get(1), "λ"))
+            .append(' ')
+            .append(buildNumOpString(B.get(2), "μ"))
+            .append(' ')
+            .append(buildNumOpString(B.get(3), "λ*μ"))
+            .toString();
+        
+        regressionDenormNL.setText(text);
     }
 
     private String buildNumOpString(double num, String postfix) {

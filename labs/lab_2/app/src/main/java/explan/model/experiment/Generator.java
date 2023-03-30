@@ -5,9 +5,9 @@ import java.util.function.Function;
 
 public class Generator {
     private Random random;
-    private Function<Float, Float> func;
+    private Function<Double, Double> func;
 
-    private Generator(Random random, Function<Float, Float> func) {
+    private Generator(Random random, Function<Double, Double> func) {
         this.random = random;
         this.func = func;
     }
@@ -16,11 +16,10 @@ public class Generator {
         random.setSeed(seed);
     }
 
-    public float genNext() {
-        var result = func.apply(random.nextFloat());
+    public double genNext() {
+        var result = func.apply(random.nextDouble());
         if (Double.isNaN(result) || Double.isInfinite(result)) {
-            // assert false;
-            return 1.0e10f;
+            assert false;
         }
         return result;
     }
@@ -38,8 +37,8 @@ public class Generator {
             throw new Error(String.format("lambda must be non-negative. Given: %lf", lambda));
         }
 
-        return new Generator(new Random(), (Float r) -> {
-            return -(float)Math.log((double)r) / lambda;
+        return new Generator(new Random(), (Double r) -> {
+            return -Math.log(0.0001 + r) / lambda;
         });
     }
 }
