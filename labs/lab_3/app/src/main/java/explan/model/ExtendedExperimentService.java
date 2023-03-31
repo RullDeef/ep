@@ -91,10 +91,7 @@ public class ExtendedExperimentService {
         double b4 = B.get(4);
         double b12 = B.get(5);
         double b13 = B.get(6);
-        double b23 = B.get(7);
-        double b14 = b23;
-        double b24 = b13;
-        double b34 = b12;
+        double b14 = B.get(7);
 
         double dx1 = experimentor.I("x1");
         double dx2 = experimentor.I("x2");
@@ -103,9 +100,6 @@ public class ExtendedExperimentService {
         double dx12 = dx1 * dx2;
         double dx13 = dx1 * dx3;
         double dx14 = dx1 * dx4;
-        double dx23 = dx2 * dx3;
-        double dx24 = dx2 * dx4;
-        double dx34 = dx3 * dx4;
 
         double x10 = experimentor.I0("x1");
         double x20 = experimentor.I0("x2");
@@ -115,8 +109,8 @@ public class ExtendedExperimentService {
         // transform coeffs
         B.set(1, b1 / dx1 - b12 * x20 / dx12 - b13 * x30 / dx13 - b14 * x40 / dx14);
         B.set(2, b2 / dx2 - b12 * x10 / dx12);
-        B.set(3, b3 / dx3 - b13 * x20 / dx12);
-        B.set(4, b4 / dx4 - b14 * x20 / dx12);
+        B.set(3, b3 / dx3 - b13 * x20 / dx13);
+        B.set(4, b4 / dx4 - b14 * x20 / dx14);
 
         B.set(5, b12 / dx12);
         B.set(6, b13 / dx13);
@@ -138,5 +132,18 @@ public class ExtendedExperimentService {
 
     public double realAtNorm(double x1, double x2, double x3, double x4) {
         return experimentor.y(x1, x2, x3, x4);
+    }
+
+    public double calcY(double lambda1, double mu1, double lambda2, double mu2) {
+        return planMatrix.calcY(
+            experimentor.normalize("x1", lambda1),
+            experimentor.normalize("x2", mu1),
+            experimentor.normalize("x3", lambda2),
+            experimentor.normalize("x4", mu2)
+        );
+    }
+
+    public double calcYNorm(double x1, double x2, double x3, double x4) {
+        return planMatrix.calcY(x1, x2, x3, x4);
     }
 }

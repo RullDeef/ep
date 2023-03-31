@@ -77,13 +77,15 @@ public class Lab3Controller extends Lab3View {
         }
 
         var plan = experimentService.getPlanMatrix();
-        double yHat = plan.calcY(x1, x2, x3, x4);
+        double yHat;
         double y;
-
+        
         if (normalizedInputCheckBox.isSelected()) {
             y = experimentService.realAtNorm(x1, x2, x3, x4);
+            yHat = experimentService.calcYNorm(x1, x2, x3, x4);
         } else {
             y = experimentService.realAt(x1, x2, x3, x4);
+            yHat = experimentService.calcY(x1, x2, x3, x4);
         }
 
         setYOutput(y);
