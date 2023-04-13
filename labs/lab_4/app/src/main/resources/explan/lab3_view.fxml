@@ -1,0 +1,909 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<HBox prefHeight="686.0" prefWidth="1299.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="explan.Lab3Controller">
+    <children>
+        <VBox prefHeight="200.0">
+            <children>
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#recalcYButtonPressed" text="расчёт Y">
+                <font>
+                    <Font size="20.0" />
+                </font>
+                <VBox.margin>
+                    <Insets bottom="8.0" top="8.0" />
+                </VBox.margin>
+            </Button>
+            <Separator prefWidth="200.0" />
+            <GridPane vgap="16.0">
+                <columnConstraints>
+                <ColumnConstraints hgrow="NEVER" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                </columnConstraints>
+                <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                </rowConstraints>
+                <children>
+                    <Label text="λ1 (x1):">
+                        <font>
+                        <Font size="20.0" />
+                        </font>
+                    </Label>
+                    <Label text="μ1 (x2):" GridPane.rowIndex="1">
+                        <font>
+                        <Font size="20.0" />
+                        </font>
+                    </Label>
+                    <TextField promptText="0.0" GridPane.columnIndex="1" fx:id="x1TextField">
+                        <font>
+                        <Font size="20.0" />
+                        </font>
+                        <GridPane.margin>
+                        <Insets />
+                        </GridPane.margin>
+                    </TextField>
+                    <TextField promptText="0.0" GridPane.columnIndex="1" GridPane.rowIndex="1" fx:id="x2TextField">
+                        <GridPane.margin>
+                        <Insets />
+                        </GridPane.margin>
+                        <font>
+                        <Font size="20.0" />
+                        </font>
+                    </TextField>
+                  <Label text="λ2 (x3):" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label text="μ2 (x4):" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <TextField promptText="0.0" GridPane.columnIndex="1" GridPane.rowIndex="2" fx:id="x3TextField">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </TextField>
+                  <TextField promptText="0.0" GridPane.columnIndex="1" GridPane.rowIndex="3" fx:id="x4TextField">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </TextField>
+                </children>
+                <padding>
+                    <Insets top="8.0" />
+                </padding>
+            </GridPane>
+            <CheckBox fx:id="normalizedInputCheckBox" mnemonicParsing="false" text="Нормализованные&#10;значения факторов">
+                <VBox.margin>
+                    <Insets top="8.0" />
+                </VBox.margin>
+                <font>
+                    <Font size="20.0" />
+                </font>
+            </CheckBox>
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#predictButtonPressed" text="Вычислить">
+                <font>
+                    <Font size="20.0" />
+                </font>
+                <VBox.margin>
+                    <Insets bottom="8.0" top="8.0" />
+                </VBox.margin>
+            </Button>
+            <GridPane vgap="16.0">
+                <columnConstraints>
+                <ColumnConstraints fillWidth="false" hgrow="NEVER" minWidth="-Infinity" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                </columnConstraints>
+                <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                </rowConstraints>
+                <children>
+                    <Label text="Y:">
+                        <font>
+                        <Font size="20.0" />
+                        </font>
+                    </Label>
+                    <Label text="|Y-Yпр|:" GridPane.rowIndex="2">
+                        <font>
+                        <Font size="20.0" />
+                        </font>
+                    </Label>
+                    <TextField fx:id="yOutputText" editable="false" promptText="---" GridPane.columnIndex="1">
+                        <font>
+                        <Font size="20.0" />
+                        </font>
+                    </TextField>
+                    <TextField fx:id="yHatOutputText" editable="false" promptText="---" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <font>
+                        <Font size="20.0" />
+                        </font>
+                    </TextField>
+                    <Label text="Yпр:" GridPane.rowIndex="1">
+                        <font>
+                        <Font size="20.0" />
+                        </font>
+                    </Label>
+                    <TextField fx:id="yErrOutputText" editable="false" promptText="---" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <font>
+                        <Font size="20.0" />
+                        </font>
+                    </TextField>
+                </children>
+                <VBox.margin>
+                    <Insets bottom="8.0" top="8.0" />
+                </VBox.margin>
+            </GridPane>
+            </children>
+            <padding>
+            <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+            </padding>
+        </VBox>
+        <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+            <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="Область экспериментирования" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="8.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets top="8.0" />
+               </padding>
+            </Label>
+            <GridPane alignment="CENTER" hgap="8.0" maxWidth="1.7976931348623157E308" vgap="8.0">
+              <columnConstraints>
+                <ColumnConstraints halignment="RIGHT" hgrow="NEVER" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints halignment="RIGHT" hgrow="NEVER" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints halignment="RIGHT" hgrow="NEVER" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints halignment="RIGHT" hgrow="NEVER" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints halignment="RIGHT" hgrow="NEVER" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints halignment="RIGHT" hgrow="NEVER" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label contentDisplay="CENTER" text="min λ1">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label contentDisplay="CENTER" text="max λ1" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label contentDisplay="CENTER" text="min μ1" GridPane.columnIndex="2">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label contentDisplay="CENTER" text="max μ1" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="minLambda1" promptText="0.8" text="0.8" GridPane.columnIndex="1">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="maxLambda1" promptText="1.2" text="1.2" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="minMu1" promptText="2" text="2" GridPane.columnIndex="3">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="maxMu1" promptText="4" text="4" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </TextField>
+                  <Label contentDisplay="CENTER" text="min λ2" GridPane.columnIndex="4">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label contentDisplay="CENTER" text="max λ2" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label contentDisplay="CENTER" text="min μ2" GridPane.columnIndex="6">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label contentDisplay="CENTER" text="max μ2" GridPane.columnIndex="6" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="minLambda2" promptText="0.8" text="0.8" GridPane.columnIndex="5">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="maxLambda2" promptText="1.2" text="1.2" GridPane.columnIndex="5" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="minMu2" promptText="2" text="2" GridPane.columnIndex="7">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="maxMu2" promptText="4" text="4" GridPane.columnIndex="7" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </TextField>
+               </children>
+               <padding>
+                  <Insets bottom="8.0" />
+               </padding>
+            </GridPane>
+            <Separator prefWidth="200.0">
+               <VBox.margin>
+                  <Insets bottom="8.0" />
+               </VBox.margin>
+            </Separator>
+            <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="Матрица планирования" textAlignment="CENTER">
+                <font>
+                    <Font name="System Bold" size="20.0" />
+                </font>
+            </Label>
+            <Separator prefWidth="200.0">
+                <VBox.margin>
+                    <Insets bottom="8.0" top="8.0" />
+                </VBox.margin>
+            </Separator>
+            <GridPane alignment="CENTER" gridLinesVisible="true" maxWidth="1.7976931348623157E308">
+                <columnConstraints>
+                <ColumnConstraints halignment="CENTER" hgrow="NEVER" minWidth="10.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="50.0" />
+                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="50.0" />
+                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="50.0" />
+                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="50.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="120.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="120.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="120.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="120.0" />
+                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="100.0" />
+                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="100.0" />
+                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="100.0" />
+                </columnConstraints>
+                <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                </rowConstraints>
+                <children>
+                    <Label text="№ опыта">
+                        <font>
+                        <Font size="20.0" />
+                        </font>
+                        <GridPane.margin>
+                        <Insets />
+                        </GridPane.margin>
+                        <padding>
+                        <Insets left="8.0" right="8.0" />
+                        </padding>
+                    </Label>
+                    <Label text="1" GridPane.rowIndex="1">
+                        <font>
+                        <Font size="20.0" />
+                        </font>
+                    </Label>
+                    <Label text="2" GridPane.rowIndex="2">
+                        <font>
+                        <Font size="20.0" />
+                        </font>
+                    </Label>
+                    <Label text="3" GridPane.rowIndex="3">
+                        <font>
+                        <Font size="20.0" />
+                        </font>
+                    </Label>
+                    <Label text="4" GridPane.rowIndex="4">
+                        <font>
+                        <Font size="20.0" />
+                        </font>
+                    </Label>
+                    <Label alignment="CENTER" text="x0" textAlignment="CENTER" GridPane.columnIndex="1">
+                        <font>
+                        <Font size="20.0" />
+                        </font>
+                    </Label>
+                    <Label alignment="CENTER" text="1" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <font>
+                        <Font size="20.0" />
+                        </font>
+                    </Label>
+                    <Label alignment="CENTER" text="1" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <font>
+                        <Font size="20.0" />
+                        </font>
+                    </Label>
+                    <Label alignment="CENTER" text="1" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                        <font>
+                        <Font size="20.0" />
+                        </font>
+                    </Label>
+                    <Label alignment="CENTER" text="1" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                        <font>
+                        <Font size="20.0" />
+                        </font>
+                    </Label>
+                    <Label text="x1" GridPane.columnIndex="2">
+                        <font>
+                        <Font size="20.0" />
+                        </font>
+                    </Label>
+                    <Label text="-1" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                        <font>
+                        <Font size="20.0" />
+                        </font>
+                    </Label>
+                    <Label text="1" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                        <font>
+                        <Font size="20.0" />
+                        </font>
+                    </Label>
+                    <Label text="-1" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                        <font>
+                        <Font size="20.0" />
+                        </font>
+                    </Label>
+                    <Label text="1" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                        <font>
+                        <Font size="20.0" />
+                        </font>
+                    </Label>
+                    <Label text="x2" GridPane.columnIndex="3">
+                        <font>
+                        <Font size="20.0" />
+                        </font>
+                    </Label>
+                    <Label text="-1" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                        <font>
+                        <Font size="20.0" />
+                        </font>
+                    </Label>
+                    <Label text="-1" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                        <font>
+                        <Font size="20.0" />
+                        </font>
+                    </Label>
+                    <Label text="1" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                        <font>
+                        <Font size="20.0" />
+                        </font>
+                    </Label>
+                    <Label text="1" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                        <font>
+                        <Font size="20.0" />
+                        </font>
+                    </Label>
+                    <Label text="x3" GridPane.columnIndex="4">
+                        <font>
+                        <Font size="20.0" />
+                        </font>
+                    </Label>
+                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="-1" GridPane.columnIndex="3" GridPane.rowIndex="6">
+                        <font>
+                        <Font size="20.0" />
+                        </font>
+                    </Text>
+                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="-1" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                        <font>
+                        <Font size="20.0" />
+                        </font>
+                    </Text>
+                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="-1" GridPane.columnIndex="4" GridPane.rowIndex="3">
+                        <font>
+                        <Font size="20.0" />
+                        </font>
+                    </Text>
+                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="-1" GridPane.columnIndex="2" GridPane.rowIndex="7">
+                        <font>
+                        <Font size="20.0" />
+                        </font>
+                    </Text>
+                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Y" GridPane.columnIndex="9">
+                        <font>
+                        <Font size="20.0" />
+                        </font>
+                    </Text>
+                    <Text fx:id="Y1" strokeType="OUTSIDE" strokeWidth="0.0" text="Y1" GridPane.columnIndex="9" GridPane.rowIndex="1">
+                        <font>
+                        <Font size="20.0" />
+                        </font>
+                    </Text>
+                    <Text fx:id="Y2" strokeType="OUTSIDE" strokeWidth="0.0" text="Y2" GridPane.columnIndex="9" GridPane.rowIndex="2">
+                        <font>
+                        <Font size="20.0" />
+                        </font>
+                    </Text>
+                    <Text fx:id="Y3" strokeType="OUTSIDE" strokeWidth="0.0" text="Y3" GridPane.columnIndex="9" GridPane.rowIndex="3">
+                        <font>
+                        <Font size="20.0" />
+                        </font>
+                    </Text>
+                    <Text fx:id="Y4" strokeType="OUTSIDE" strokeWidth="0.0" text="Y4" GridPane.columnIndex="9" GridPane.rowIndex="4">
+                        <font>
+                        <Font size="20.0" />
+                        </font>
+                    </Text>
+                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Yпр" GridPane.columnIndex="10">
+                        <font>
+                        <Font size="20.0" />
+                        </font>
+                    </Text>
+                    <Text fx:id="Y1P" strokeType="OUTSIDE" strokeWidth="0.0" text="Y1P" GridPane.columnIndex="10" GridPane.rowIndex="1">
+                        <font>
+                        <Font size="20.0" />
+                        </font>
+                    </Text>
+                    <Text fx:id="Y2P" strokeType="OUTSIDE" strokeWidth="0.0" text="Y2P" GridPane.columnIndex="10" GridPane.rowIndex="2">
+                        <font>
+                        <Font size="20.0" />
+                        </font>
+                    </Text>
+                    <Text fx:id="Y3P" strokeType="OUTSIDE" strokeWidth="0.0" text="Y3P" GridPane.columnIndex="10" GridPane.rowIndex="3">
+                        <font>
+                        <Font size="20.0" />
+                        </font>
+                    </Text>
+                    <Text fx:id="Y4P" strokeType="OUTSIDE" strokeWidth="0.0" text="Y4P" GridPane.columnIndex="10" GridPane.rowIndex="4">
+                        <font>
+                        <Font size="20.0" />
+                        </font>
+                    </Text>
+                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="|Y-Yпр|" GridPane.columnIndex="11">
+                        <font>
+                        <Font size="20.0" />
+                        </font>
+                    </Text>
+                    <Text fx:id="Y1E" strokeType="OUTSIDE" strokeWidth="0.0" text="Y1E" GridPane.columnIndex="11" GridPane.rowIndex="1">
+                        <font>
+                        <Font size="20.0" />
+                        </font>
+                    </Text>
+                    <Text fx:id="Y2E" strokeType="OUTSIDE" strokeWidth="0.0" text="Y2E" GridPane.columnIndex="11" GridPane.rowIndex="2">
+                        <font>
+                        <Font size="20.0" />
+                        </font>
+                    </Text>
+                    <Text fx:id="Y3E" strokeType="OUTSIDE" strokeWidth="0.0" text="Y3E" GridPane.columnIndex="11" GridPane.rowIndex="3">
+                        <font>
+                        <Font size="20.0" />
+                        </font>
+                    </Text>
+                    <Text fx:id="Y4E" strokeType="OUTSIDE" strokeWidth="0.0" text="Y4E" GridPane.columnIndex="11" GridPane.rowIndex="4">
+                        <font>
+                        <Font size="20.0" />
+                        </font>
+                    </Text>
+                  <Label text="x4=x1x2x3" GridPane.columnIndex="5">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="-1" GridPane.columnIndex="5" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="1" GridPane.columnIndex="5" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="1" GridPane.columnIndex="5" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="1" GridPane.columnIndex="5" GridPane.rowIndex="5">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Label text="5" GridPane.rowIndex="5">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label text="6" GridPane.rowIndex="6">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label text="7" GridPane.rowIndex="7">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label text="8" GridPane.rowIndex="8">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" text="1" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" text="1" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" text="1" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" text="1" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" text="1" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="6">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" text="1" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="8">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" text="1" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="7">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" text="1" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="8">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" text="1" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.rowIndex="5">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" text="1" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.rowIndex="6">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" text="1" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.rowIndex="7">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" text="1" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.rowIndex="8">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="-1" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="-1" GridPane.columnIndex="3" GridPane.rowIndex="5">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="-1" GridPane.columnIndex="4" GridPane.rowIndex="4">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="-1" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="-1" GridPane.columnIndex="5" GridPane.rowIndex="4">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="-1" GridPane.columnIndex="5" GridPane.rowIndex="6">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="-1" GridPane.columnIndex="5" GridPane.rowIndex="7">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="1" GridPane.columnIndex="5" GridPane.rowIndex="8">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Label text="x1x2=x3x4" GridPane.columnIndex="6">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label text="x1x3=x2x4" GridPane.columnIndex="7">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label text="x1x4=x2x3" GridPane.columnIndex="8">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="1" GridPane.columnIndex="6" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="1" GridPane.columnIndex="6" GridPane.rowIndex="4">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="1" GridPane.columnIndex="6" GridPane.rowIndex="5">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="1" GridPane.columnIndex="6" GridPane.rowIndex="8">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="1" GridPane.columnIndex="7" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="-1" GridPane.columnIndex="6" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="-1" GridPane.columnIndex="6" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="-1" GridPane.columnIndex="6" GridPane.rowIndex="6">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="-1" GridPane.columnIndex="6" GridPane.rowIndex="7">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="1" GridPane.columnIndex="7" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="1" GridPane.columnIndex="7" GridPane.rowIndex="6">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="1" GridPane.columnIndex="7" GridPane.rowIndex="8">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="-1" GridPane.columnIndex="7" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="-1" GridPane.columnIndex="7" GridPane.rowIndex="4">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="-1" GridPane.columnIndex="7" GridPane.rowIndex="5">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="-1" GridPane.columnIndex="7" GridPane.rowIndex="7">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="1" GridPane.columnIndex="8" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="1" GridPane.columnIndex="8" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="1" GridPane.columnIndex="8" GridPane.rowIndex="7">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="1" GridPane.columnIndex="8" GridPane.rowIndex="8">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="-1" GridPane.columnIndex="8" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="-1" GridPane.columnIndex="8" GridPane.rowIndex="4">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="-1" GridPane.columnIndex="8" GridPane.rowIndex="5">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="-1" GridPane.columnIndex="8" GridPane.rowIndex="6">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="Y5" strokeType="OUTSIDE" strokeWidth="0.0" text="Y5" GridPane.columnIndex="9" GridPane.rowIndex="5">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="Y6" strokeType="OUTSIDE" strokeWidth="0.0" text="Y6" GridPane.columnIndex="9" GridPane.rowIndex="6">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="Y7" strokeType="OUTSIDE" strokeWidth="0.0" text="Y7" GridPane.columnIndex="9" GridPane.rowIndex="7">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="Y8" strokeType="OUTSIDE" strokeWidth="0.0" text="Y8" GridPane.columnIndex="9" GridPane.rowIndex="8">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="Y5P" strokeType="OUTSIDE" strokeWidth="0.0" text="Y5P" GridPane.columnIndex="10" GridPane.rowIndex="5">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="Y6P" strokeType="OUTSIDE" strokeWidth="0.0" text="Y6P" GridPane.columnIndex="10" GridPane.rowIndex="6">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="Y7P" strokeType="OUTSIDE" strokeWidth="0.0" text="Y7P" GridPane.columnIndex="10" GridPane.rowIndex="7">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="Y8P" strokeType="OUTSIDE" strokeWidth="0.0" text="Y8P" GridPane.columnIndex="10" GridPane.rowIndex="8">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="Y5E" strokeType="OUTSIDE" strokeWidth="0.0" text="Y5E" GridPane.columnIndex="11" GridPane.rowIndex="5">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="Y6E" strokeType="OUTSIDE" strokeWidth="0.0" text="Y6E" GridPane.columnIndex="11" GridPane.rowIndex="6">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="Y7E" strokeType="OUTSIDE" strokeWidth="0.0" text="Y7E" GridPane.columnIndex="11" GridPane.rowIndex="7">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="Y8E" strokeType="OUTSIDE" strokeWidth="0.0" text="Y8E" GridPane.columnIndex="11" GridPane.rowIndex="8">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                </children>
+            </GridPane>
+            <Separator prefWidth="200.0">
+                <VBox.margin>
+                    <Insets bottom="8.0" top="8.0" />
+                </VBox.margin>
+            </Separator>
+            <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Уравнение регрессии">
+                <font>
+                    <Font name="System Bold" size="20.0" />
+                </font>
+            </Label>
+            <GridPane alignment="CENTER" hgap="16.0">
+                <columnConstraints>
+                <ColumnConstraints halignment="RIGHT" hgrow="NEVER" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="NEVER" maxWidth="1.7976931348623157E308" minWidth="10.0" />
+                </columnConstraints>
+                <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                </rowConstraints>
+                <children>
+                    <Label text="(норм.):" textAlignment="RIGHT" visible="false">
+                        <font>
+                        <Font size="20.0" />
+                        </font>
+                    </Label>
+                    <Label text="(натур.):" textAlignment="RIGHT" visible="false" GridPane.rowIndex="1">
+                        <font>
+                        <Font size="20.0" />
+                        </font>
+                    </Label>
+                    <Label fx:id="regressionNorm" maxWidth="1.7976931348623157E308" text="y = ..." GridPane.columnIndex="1">
+                        <font>
+                        <Font size="20.0" />
+                        </font>
+                    </Label>
+                    <Label fx:id="regressionDenorm" maxWidth="1.7976931348623157E308" text="y = ..." visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <font>
+                        <Font size="20.0" />
+                        </font>
+                    </Label>
+                </children>
+            </GridPane>
+            </children>
+        </VBox>
+    </children>
+</HBox>
