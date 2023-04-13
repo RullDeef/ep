@@ -137,12 +137,6 @@ public class SystemModel {
                 }
             }
 
-            // check for time corruption
-            if (Double.isNaN(time) || Double.isNaN(nextRequestArrivalTime) || Double.isNaN(workCompleteTime)) {
-                // time is corrupted!
-                assert false;
-            }
-
             // advance time
             var deltaTime = Double.POSITIVE_INFINITY;
             if (requestsProduced < totalRequests) {

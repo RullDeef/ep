@@ -168,6 +168,12 @@ public class Lab3View extends BaseView {
             .append(buildNumOpString(B.get(6), "x1x3"))
             .append(' ')
             .append(buildNumOpString(B.get(7), "x1x4"))
+            .append(' ')
+            .append(buildNumOpString(B.get(7), "x2x3"))
+            .append(' ')
+            .append(buildNumOpString(B.get(6), "x2x4"))
+            .append(' ')
+            .append(buildNumOpString(B.get(5), "x3x4"))
             .toString();
         
         System.out.printf("norm: %s\n", text);

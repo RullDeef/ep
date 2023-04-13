@@ -294,9 +294,9 @@
                     <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="50.0" />
                     <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="50.0" />
                   <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="120.0" />
-                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="80.0" />
-                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="80.0" />
-                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="80.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="120.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="120.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="120.0" />
                     <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="100.0" />
                     <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="100.0" />
                     <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="100.0" />
@@ -664,17 +664,17 @@
                         <Font size="20.0" />
                      </font>
                   </Text>
-                  <Label text="x1x2" GridPane.columnIndex="6">
+                  <Label text="x1x2=x3x4" GridPane.columnIndex="6">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Label text="x1x3" GridPane.columnIndex="7">
+                  <Label text="x1x3=x2x4" GridPane.columnIndex="7">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Label text="x2x3" GridPane.columnIndex="8">
+                  <Label text="x1x4=x2x3" GridPane.columnIndex="8">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -866,7 +866,7 @@
                     <Insets bottom="8.0" top="8.0" />
                 </VBox.margin>
             </Separator>
-            <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Уравнения регрессии">
+            <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Уравнение регрессии">
                 <font>
                     <Font name="System Bold" size="20.0" />
                 </font>
@@ -881,12 +881,12 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 </rowConstraints>
                 <children>
-                    <Label text="(норм.):" textAlignment="RIGHT">
+                    <Label text="(норм.):" textAlignment="RIGHT" visible="false">
                         <font>
                         <Font size="20.0" />
                         </font>
                     </Label>
-                    <Label text="(натур.):" textAlignment="RIGHT" GridPane.rowIndex="1">
+                    <Label text="(натур.):" textAlignment="RIGHT" visible="false" GridPane.rowIndex="1">
                         <font>
                         <Font size="20.0" />
                         </font>
@@ -896,7 +896,7 @@
                         <Font size="20.0" />
                         </font>
                     </Label>
-                    <Label fx:id="regressionDenorm" maxWidth="1.7976931348623157E308" text="y = ..." GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <Label fx:id="regressionDenorm" maxWidth="1.7976931348623157E308" text="y = ..." visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
                         <font>
                         <Font size="20.0" />
                         </font>

@@ -27,20 +27,20 @@ public class FracPlanMatrix4 {
         assert Y.getNumRows() == 8 && Y.getNumCols() == 1;
 
         X = new SimpleMatrix(new double[][] {
-            //            x0  x1  x2  x3  x4  x1x2  x1x3  x1x4
-            new double[] { 1, -1, -1, -1, -1,    1,    1,    1},
-            new double[] { 1,  1, -1, -1,  1,   -1,   -1,    1},
-            new double[] { 1, -1,  1, -1,  1,   -1,    1,   -1},
-            new double[] { 1,  1,  1, -1, -1,    1,   -1,   -1},
-            new double[] { 1, -1, -1,  1,  1,    1,   -1,   -1},
-            new double[] { 1,  1, -1,  1, -1,   -1,    1,   -1},
-            new double[] { 1, -1,  1,  1, -1,   -1,   -1,    1},
-            new double[] { 1,  1,  1,  1,  1,    1,    1,    1}
+            //            x0  x1  x2  x3  x4 x1x2 x1x3 x1x4 x2x3 x2x4 x3x4
+            new double[] { 1, -1, -1, -1, -1,   1,   1,   1,   1,   1,  1},
+            new double[] { 1,  1, -1, -1,  1,  -1,  -1,   1,   1,  -1, -1},
+            new double[] { 1, -1,  1, -1,  1,  -1,   1,  -1,  -1,   1, -1},
+            new double[] { 1,  1,  1, -1, -1,   1,  -1,  -1,  -1,  -1,  1},
+            new double[] { 1, -1, -1,  1,  1,   1,  -1,  -1,  -1,  -1,  1},
+            new double[] { 1,  1, -1,  1, -1,  -1,   1,  -1,  -1,   1, -1},
+            new double[] { 1, -1,  1,  1, -1,  -1,  -1,   1,   1,  -1, -1},
+            new double[] { 1,  1,  1,  1,  1,   1,   1,   1,   1,   1,  1}
         });
         this.Y = Y;
 
         // recalculate B
-        B = new SimpleMatrix(8, 1);
+        B = new SimpleMatrix(11, 1);
 
         for (int col = 0; col < B.getNumRows(); col++) {
             double b = 0;
@@ -60,14 +60,17 @@ public class FracPlanMatrix4 {
     }
 
     public double calcY(double x1, double x2, double x3, double x4) {
-        return new SimpleMatrix(1, 8, true, 1,
+        return new SimpleMatrix(1, 11, true, 1,
             x1,
             x2,
             x3,
             x4,
             x1*x2,
             x1*x3,
-            x2*x3
+            x1*x4,
+            x2*x3,
+            x2*x4,
+            x3*x4
         ).dot(B);
     }
 

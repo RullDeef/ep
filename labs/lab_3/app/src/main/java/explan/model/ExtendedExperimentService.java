@@ -92,6 +92,9 @@ public class ExtendedExperimentService {
         double b12 = B.get(5);
         double b13 = B.get(6);
         double b14 = B.get(7);
+        double b23 = B.get(8);
+        double b24 = B.get(9);
+        double b34 = B.get(10);
 
         double dx1 = experimentor.I("x1");
         double dx2 = experimentor.I("x2");
@@ -100,6 +103,9 @@ public class ExtendedExperimentService {
         double dx12 = dx1 * dx2;
         double dx13 = dx1 * dx3;
         double dx14 = dx1 * dx4;
+        double dx23 = dx2 * dx3;
+        double dx24 = dx2 * dx4;
+        double dx34 = dx3 * dx4;
 
         double x10 = experimentor.I0("x1");
         double x20 = experimentor.I0("x2");
@@ -108,9 +114,9 @@ public class ExtendedExperimentService {
 
         // transform coeffs
         B.set(1, b1 / dx1 - b12 * x20 / dx12 - b13 * x30 / dx13 - b14 * x40 / dx14);
-        B.set(2, b2 / dx2 - b12 * x10 / dx12);
-        B.set(3, b3 / dx3 - b13 * x20 / dx13);
-        B.set(4, b4 / dx4 - b14 * x20 / dx14);
+        B.set(2, b2 / dx2 - b12 * x10 / dx12 - b23 * x30 / dx23 - b24 * x40 / dx24);
+        B.set(3, b3 / dx3 - b13 * x10 / dx13 - b23 * x20 / dx23 - b34 * x40 / dx34);
+        // B.set(4, b4 / dx4 - b14 * x10 / dx14 - b24 * x40 / );
 
         B.set(5, b12 / dx12);
         B.set(6, b13 / dx13);
