@@ -102,6 +102,10 @@ public class OCCPExperimentService implements IExtendedExperimentService {
         double dx23 = dx2 * dx3;
         double dx24 = dx2 * dx4;
         double dx34 = dx3 * dx4;
+        double dx11 = dx1 * dx1;
+        double dx22 = dx2 * dx2;
+        double dx33 = dx3 * dx3;
+        double dx44 = dx4 * dx4;
 
         double x10 = experimentor.I0("x1");
         double x20 = experimentor.I0("x2");
@@ -109,10 +113,10 @@ public class OCCPExperimentService implements IExtendedExperimentService {
         double x40 = experimentor.I0("x4");
 
         // transform coeffs
-        B.set(1, b1 / dx1 - b12 * x20 / dx12 - b13 * x30 / dx13 - b14 * x40 / dx14);
-        B.set(2, b2 / dx2 - b12 * x10 / dx12 - b23 * x30 / dx23 - b24 * x40 / dx24);
-        B.set(3, b3 / dx3 - b13 * x10 / dx13 - b23 * x20 / dx23 - b34 * x40 / dx34);
-        B.set(4, b4 / dx4 - b14 * x10 / dx14 - b24 * x40 / dx24 - b34 * x30 / dx34);
+        B.set(1, b1 / dx1 - b12 * x20 / dx12 - b13 * x30 / dx13 - b14 * x40 / dx14 - 2 * b11 * x10 / dx11);
+        B.set(2, b2 / dx2 - b12 * x10 / dx12 - b23 * x30 / dx23 - b24 * x40 / dx24 - 2 * b22 * x20 / dx22);
+        B.set(3, b3 / dx3 - b13 * x10 / dx13 - b23 * x20 / dx23 - b34 * x40 / dx34 - 2 * b33 * x30 / dx33);
+        B.set(4, b4 / dx4 - b14 * x10 / dx14 - b24 * x40 / dx24 - b34 * x30 / dx34 - 2 * b44 * x40 / dx44);
 
         B.set(5, b12 / dx12);
         B.set(6, b13 / dx13);
@@ -120,6 +124,10 @@ public class OCCPExperimentService implements IExtendedExperimentService {
         B.set(8, b23 / dx23);
         B.set(9, b24 / dx24);
         B.set(10, b34 / dx34);
+        B.set(11, b11 / dx11);
+        B.set(12, b22 / dx22);
+        B.set(13, b33 / dx33);
+        B.set(14, b44 / dx44);
 
         B.set(0, b0
             - b1 * x10 / dx1 - b2 * x20 / dx2 - b3 * x30 / dx3 - b4 * x40 / dx4
@@ -129,6 +137,10 @@ public class OCCPExperimentService implements IExtendedExperimentService {
             + b23 * x20 * x30 / dx23
             + b24 * x20 * x40 / dx24
             + b34 * x30 * x40 / dx34
+            + b11 * x10 * x10 / dx11
+            + b22 * x20 * x20 / dx22
+            + b33 * x30 * x30 / dx33
+            + b44 * x40 * x40 / dx44
         );
 
         return B;
